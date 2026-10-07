@@ -1,0 +1,33 @@
+/*
+Theme Name: Carbon Charity
+Author: Kantipur Themes
+Author URI: https://www.kantipurthemes.com/
+Theme URI: https://www.kantipurthemes.com/carbon-charity
+Description: Carbon Charity is a Full Site Editing WordPress theme for a Charity, Foundation, Crowdfunding, NGO, Nonprofit Organization, Volounteers, Donations, Animals protections or a Fundraising campaign. This theme is carefully created to evoke the emotions of people and get them to contribute towards the charitable causes.
+Tags: full-site-editing, editor-style, block-styles, block-patterns
+Text Domain: carbon-charity
+Requires at least: 6.3
+Requires PHP: 7.4
+Tested up to: 6.8
+Version: 1.0.1
+
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+/* Styles intended only for the front.*/
+html {
+	scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+body {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+}

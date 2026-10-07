@@ -1,0 +1,117 @@
+/*
+ *
+ * This CSS file adds the admin styling for our custom post types and widget admin
+ *
+*/
+
+@font-face {
+	font-family: 'ElegantIcons';
+	src:url('../../fonts/ElegantIcons.eot');
+	src:url('../../fonts/ElegantIcons.eot?#iefix') format('embedded-opentype'),
+		url('../../fonts/ElegantIcons.woff') format('woff'),
+		url('../../fonts/ElegantIcons.ttf') format('truetype'),
+		url('../../fonts/ElegantIcons.svg#ElegantIcons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+/* Staff Screen - 32px */
+.icon32-posts-staff {
+    background: none !important;
+}
+
+.icon32-posts-staff:before {
+	content: "\e08b";
+	-webkit-font-smoothing: antialiased;
+	margin-top: 1px;
+	font: 32px 'ElegantIcons';
+}
+
+/* Staff Menu Icon - 16px */
+#menu-posts-staff .wp-menu-image {
+    background: none !important;
+}
+
+#menu-posts-staff .wp-menu-image:before {
+	content: "\e08b";
+	-webkit-font-smoothing: antialiased;
+	width: 16px;
+	height: 16px;
+	font: 20px 'ElegantIcons';
+	margin-left: 0;
+	position: relative;
+	top: 0;
+	color: #817f7f;
+}
+
+#menu-posts-staff.wp-has-current-submenu .wp-menu-image:before {
+    color: #fff;
+}
+
+/* Release Menu Icon - 16px */
+#menu-posts-release .wp-menu-image {
+    background: none !important;
+}
+
+#menu-posts-release .wp-menu-image:before {
+	content: "\e058";
+	-webkit-font-smoothing: antialiased;
+	width: 16px;
+	height: 16px;
+	font: 20px 'ElegantIcons';
+	margin-left: 0;
+	position: relative;
+	top: 0;
+	color: #817f7f;
+}
+
+#menu-posts-release.wp-has-current-submenu .wp-menu-image:before {
+    color: #fff;
+}
+
+/* Sponsor Menu Icon - 16px */
+#menu-posts-sponsor .wp-menu-image {
+    background: none !important;
+}
+
+#menu-posts-sponsor .wp-menu-image:before {
+	content: "\e033";
+	-webkit-font-smoothing: antialiased;
+	width: 16px;
+	height: 16px;
+	font: 20px 'ElegantIcons';
+	margin-left: 0;
+	position: relative;
+	top: 0;
+	color: #817f7f;
+}
+
+#menu-posts-release.wp-has-current-submenu .wp-menu-image:before {
+    color: #fff;
+}
+
+/* Widget Admin */
+
+.organizedthemes-two-column-widget {
+	overflow: hidden;
+}
+
+.organizedthemes-left-column,
+.organizedthemes-right-column {
+	width: 48%;
+}
+
+.organizedthemes-left-column {
+	float: left;
+}
+
+.organizedthemes-right-column {
+	float: right;
+}
+
+.organizedthemes-preview {
+	margin-top: 15px;
+	max-width: 100%;
+	height: auto;	
+}

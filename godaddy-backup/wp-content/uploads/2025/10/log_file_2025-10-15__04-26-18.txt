@@ -1,0 +1,31 @@
+
+---Downloaded files---
+The import files for: Business / Portfolio (Block Editor) were successfully downloaded!
+Initial max execution time = 180
+Files info:
+Site URL = https://tbqamal.org
+Data file = /dom502158/wp-content/uploads/2025/10/demo-content-import-file_2025-10-15__04-26-18.xml
+Widget file = /dom502158/wp-content/uploads/2025/10/demo-widgets-import-file_2025-10-15__04-26-18.json
+Customizer file = /dom502158/wp-content/uploads/2025/10/demo-customizer-import-file_2025-10-15__04-26-18.dat
+
+
+---Importing widgets---
+Sidebar : 
+
+Search - Search - Imported
+Block - No Title - Imported
+Block - No Title - Imported
+
+Footer 1 : 
+
+Block - No Title - Imported
+
+Footer 2 : 
+
+Block - No Title - Imported
+
+Footer 3 : 
+
+Block - No Title - Imported
+
+

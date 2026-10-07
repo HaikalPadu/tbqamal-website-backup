@@ -1,0 +1,1 @@
+(()=>{"use strict";const e={n:n=>{const o=n&&n.__esModule?()=>n.default:()=>n;return e.d(o,{a:o}),o},d:(n,o)=>{for(var t in o)e.o(o,t)&&!e.o(n,t)&&Object.defineProperty(n,t,{enumerable:!0,get:o[t]})},o:(e,n)=>Object.hasOwn(e,n)},n=window.jQuery;e.n(n)()(document).on("ready",function(){alert("Backend, editado para docker x2!")}),(window.tiktok=window.tiktok||{}).backend={}})();

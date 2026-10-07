@@ -1,0 +1,6 @@
+godaddy-backup/wp-config.php
+godaddy-backup/.wp-config.php.replaced.bak
+godaddy-backup/mwp_db/
+godaddy-backup/wp-content/uploads/2026/02/Video-Project-1.mp4
+*.log
+debug.log

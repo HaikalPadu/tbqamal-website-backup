@@ -1,0 +1,1 @@
+<?php return array('dependencies' => array('chip-unified-payment-method-list', 'react-jsx-runtime', 'wc-blocks-registry', 'wc-settings', 'wp-element', 'wp-html-entities', 'wp-i18n'), 'version' => 'df7daad431dd3d96d5e0');

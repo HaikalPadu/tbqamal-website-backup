@@ -1,0 +1,23 @@
+.column-portfolio_item_post_thumbs img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+    object-position: left;
+}
+
+.column-portfolio_item_post_thumbs a.wpzoom-portfolio__thumbnail{
+    display: flex;
+}
+
+@media screen and (max-width: 782px) {
+    .column-portfolio_item_post_thumbs {
+        display: none;
+    }
+
+    .column-portfolio_item_post_thumbs:before {
+        display: none !important;
+    }
+
+}

@@ -1,0 +1,686 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Text in function
+#: grassroots/layouts/pagination.php:20
+msgid ""
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-featured-page.php:53
+#: grassroots/includes/widget-posts.php:81
+msgid " Read More..."
+msgstr ""
+
+#. Text in function
+#: grassroots/layouts/post-meta.php:21
+msgid "% Comments"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/comment-functions.php:32
+msgid "%1$s at %2$s"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/comment-functions.php:29
+msgid "%s"
+msgstr ""
+
+#. Text in function
+#: grassroots/comments.php:58
+msgid "&larr; Older Comments"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/comment-functions.php:20
+#: grassroots/includes/comment-functions.php:36
+msgid "(Edit)"
+msgstr ""
+
+#. Text in function
+#: grassroots/layouts/post-meta.php:21
+msgid "1 Comment"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/theme-updater.php:1
+msgid "<p>Unable to validate update activation.</p>"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/theme-updater.php:1
+msgid "<p>Your plugin update is <span style=\"color:green\">active</span></p>"
+msgstr ""
+
+#. Text in function
+#: grassroots/single-sponsor.php:29
+#: grassroots/single.php:29
+#: grassroots/index.php:56
+#: grassroots/single-staff.php:35
+#: grassroots/page.php:26
+#: grassroots/archive.php:90
+msgid "<span class=\"more-link\">Read more</span>"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/theme-updater.php:474
+msgid "Activation Key"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/theme-updater.php:1
+msgid "Add Key"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:156
+msgid "Address"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:162
+msgid "Address 2"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-posts.php:183
+msgid "All Categories"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-sponsors.php:166
+msgid "Animation Speed"
+msgstr ""
+
+#. Text in echo
+#: grassroots/archive.php:17
+msgid "Archives"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:216
+msgid "Ascending (1, 2, 3)"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-attention.php:92
+msgid "Attention Widget"
+msgstr ""
+
+#. Text in function
+#: grassroots/archive.php:17
+msgid "Author: %s"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:135
+msgid "Background Image"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:164
+#: grassroots/includes/widget-attention.php:87
+msgid "Button Text"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:169
+msgid "Button URL"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:182
+msgid "Category"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:138
+msgid "Choose An Image"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:168
+msgid "City, State ZIP"
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-framework.php:259
+msgid "Clear"
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-framework.php:250
+msgid "Click OK to reset. Any theme settings will be lost!  This can not be undone."
+msgstr ""
+
+#. Text in function
+#: grassroots/layouts/post-meta.php:21
+msgid "Comment"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:207
+msgid "Comment Count"
+msgstr ""
+
+#. Text in echo
+#: grassroots/comments.php:57
+msgid "Comment navigation"
+msgstr ""
+
+#. Text in echo
+#: grassroots/comments.php:69
+msgid "Comments are closed."
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-contact.php:228
+msgid "Contact"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-featured-page.php:103
+msgid "Content Character Limit"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:226
+msgid "Content Display"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:159
+msgid "Content:"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:203
+msgid "Date"
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-framework.php:259
+msgid "Default"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:215
+msgid "Descending (3, 2, 1)"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-facebook-like-box.php:1
+msgid "Display a Facebook Like Box"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-video.php:90
+msgid "Display a Featured Video"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-posts.php:255
+msgid "Display your recent posts"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-sponsors.php:170
+msgid "Displays a list of your sponsor logos."
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-attention.php:92
+msgid "Displays a small block to catch visitors attention"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-contact.php:228
+msgid "Displays address, business hours and a map."
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-home-box.php:177
+msgid "Displays an image with text and link."
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-featured-page.php:1
+msgid "Displays featured page with thumbnail"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-page.php:91
+msgid "Displays the content from the page of your choice"
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-backup.php:135
+msgid "Download Export File"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/theme-updater.php:1
+msgid "Edit Key"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/theme-updater.php:465
+msgid "Email"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-video.php:86
+msgid "Embed Code:"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/theme-updater.php:1
+msgid "Executing upgrader_source_selection filter function..."
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-backup.php:127
+msgid "Export Settings"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-facebook-like-box.php:1
+msgid "Facebook Page Widget"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-featured-page.php:1
+msgid "Featured Page Widget"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-posts.php:255
+msgid "Featured Posts Widget"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-video.php:90
+msgid "Featured Video Widget"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:180
+msgid "For the map, you will want to paste an embeddable map from a service like Google Maps.  For best results, size your map to be 600 pixels wide by 450 pixels tall."
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-page.php:91
+msgid "Home Block - Page Content"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-home-box.php:177
+msgid "Home Box"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:188
+msgid "Hours Title"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:206
+msgid "ID"
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-backup.php:113
+msgid "If you have settings in a backup file on your computer, the Import / Export system can import those into this site. To get started, upload your backup file to import from below."
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-backup.php:108
+msgid "Import / Export"
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-backup.php:111
+msgid "Import Settings"
+msgstr ""
+
+#. Text in echo
+#: grassroots/404.php:20
+msgid "It looks like nothing was found at this location. You can try searching for it below."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:146
+msgid "Left Image"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:143
+msgid "Left or Right Image"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:234
+msgid "Limit content to"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:246
+msgid "Link To Full Blog Text"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:251
+msgid "Link To Full Blog URL"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-attention.php:82
+msgid "Link URL"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:219
+msgid "Map"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-featured-page.php:106
+#: grassroots/includes/widget-posts.php:241
+msgid "More Text"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:150
+msgid "Name"
+msgstr ""
+
+#. Text in function
+#: grassroots/comments.php:59
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:231
+msgid "No Content"
+msgstr ""
+
+#. Text in echo
+#: grassroots/404.php:18
+#: grassroots/layouts/not-found.php:16
+msgid "Not Found"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:196
+msgid "Number of Posts to Show"
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-backup.php:140
+msgid "Options Framework Import / Export"
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-backup.php:140
+msgid "Options Import / Export"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:201
+msgid "Order By"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-page.php:88
+#: grassroots/includes/widget-featured-page.php:96
+msgid "Page"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:205
+msgid "Parent"
+msgstr ""
+
+#. Text in function
+#: grassroots/layouts/campaign-item.php:17
+#: grassroots/layouts/campaign-item.php:21
+#: grassroots/index.php:26
+#: grassroots/index.php:40
+#: grassroots/index.php:50
+#: grassroots/index.php:62
+#: grassroots/search.php:24
+#: grassroots/archive.php:60
+#: grassroots/archive.php:74
+#: grassroots/archive.php:84
+#: grassroots/archive.php:96
+msgid "Permalink to %s"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:174
+msgid "Phone Number"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/comment-functions.php:20
+msgid "Pingback:"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:208
+msgid "Random"
+msgstr ""
+
+#. Text in echo
+#: grassroots/index.php:50
+#: grassroots/index.php:62
+#: grassroots/archive.php:84
+#: grassroots/archive.php:96
+msgid "Read More"
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-framework.php:250
+msgid "Restore Defaults"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:148
+msgid "Right Image"
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-framework.php:249
+msgid "Save Options"
+msgstr ""
+
+#. Text in function
+#: grassroots/search.php:16
+msgid "Search Results for: %s"
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-framework.php:259
+msgid "Select Color"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:228
+msgid "Show Content"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:230
+msgid "Show Content Limit"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:229
+msgid "Show Excerpt"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-featured-page.php:101
+msgid "Show Page Content"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-featured-page.php:99
+msgid "Show Page Title"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:222
+msgid "Show author, date and category?"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:213
+msgid "Sort Order"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-sponsors.php:152
+msgid "Sponsor Group"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/widget-sponsors.php:170
+msgid "Sponsor Widget"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-video.php:77
+msgid "The video widget can be used to display a video in any sidebar area.  Just paste the embed code from the video provider of your choice (like YouTube or Vimeo).  Be sure to use the embed code and not just the URL to the video."
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-framework.php:259
+msgid "Theme Options"
+msgstr ""
+
+#. Text in echo
+#: grassroots/comments.php:17
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-backup.php:130
+msgid "This text file can be used to restore your settings here on \"%s\", or to easily setup another website with the same settings\"."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:140
+msgid "This widget allows you to create a contact box with your address, open hours and map.  All the information is optional.  Only fields that have information in them will be displayed."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:173
+msgid "This widget allows you to display a list of posts on your home page or other widget area."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:122
+msgid "This widget allows you to display an image beside a block of text with an optional link."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-sponsors.php:143
+msgid "This widget allows you to display the logos of your sponsors."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-page.php:82
+msgid "This widget will display your slideshow.  Go to the Media section and select \"Slides\" to add your slides."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:193
+msgid "Time 1"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:198
+msgid "Time 2"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:203
+msgid "Time 3"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:208
+msgid "Time 4"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:213
+msgid "Time 5"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-home-box.php:130
+#: grassroots/includes/widget-sponsors.php:147
+#: grassroots/includes/widget-featured-page.php:93
+#: grassroots/includes/widget-attention.php:77
+#: grassroots/includes/widget-contact.php:144
+#: grassroots/includes/widget-video.php:81
+#: grassroots/includes/widget-facebook-like-box.php:50
+#: grassroots/includes/widget-posts.php:177
+#: grassroots/includes/widget-posts.php:204
+msgid "Title"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-page.php:85
+msgid "Title (optional)"
+msgstr ""
+
+#. Text in function
+#: grassroots/includes/theme-updater.php:1
+msgid "Try again"
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-backup.php:121
+msgid "Upload File and Import"
+msgstr ""
+
+#. Text in function
+#: grassroots/inc/options-backup.php:118
+msgid "Upload File: (Maximum Size: %s)"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/theme-updater.php:459
+msgid "User name"
+msgstr ""
+
+#. Text in echo
+#: grassroots/layouts/not-found.php:18
+msgid "We were unable to find what you\\'re looking for.  You can try searching for it here."
+msgstr ""
+
+#. Text in echo
+#: grassroots/inc/options-backup.php:129
+msgid "When you click the button below, the Import / Export system will create a text file for you to save to your computer."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-contact.php:138
+msgid "Widget Instructions:"
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/comment-functions.php:42
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#. Text in echo
+#: grassroots/includes/widget-posts.php:236
+msgid "characters"
+msgstr ""

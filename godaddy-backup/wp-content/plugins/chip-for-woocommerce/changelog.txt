@@ -1,0 +1,351 @@
+== Changelog ==
+
+= 2.1.3 2026-08-26 =
+* Fixed - The additional-charges fee is no longer double-counted on the order. The cart fee is already copied to the order by WooCommerce, so the plugin no longer adds it a second time during checkout.
+* Fixed - The percentage-based additional charge no longer triggers a "string * int" fatal error by casting the cart contents total to a float.
+
+= 2.1.2 2026-08-26 =
+* Fixed - The percentage-based additional charge now uses the cart contents total instead of the cart total, which is not yet calculated when the fee is applied. This fixes the fee showing as zero (or a type error) on the checkout page.
+
+= 2.1.1 2026-08-23 =
+* Added - Additional charges (fixed and percentage fees) are now shown on the checkout page before payment, so customers see the exact amount they will be charged. The fee is applied via the cart when a CHIP gateway with additional charges enabled is selected, mirroring the order fee added at payment time.
+* Changed - Updated the plugin description to list all supported payment methods (Atome, ShopeePay, Maybank QRPay, Crypto Coin) and removed the incorrect "Boost" e-wallet reference.
+* Changed - Bumped "Tested up to" to WordPress 7.1.
+
+= 2.1.0 =
+* Added - Unified payment method dropdown. The classic and Blocks checkout now renders a single dropdown listing all eligible payment methods (FPX banks, Razer e-wallets, DuitNow QR, Card) instead of three separate POST fields. The selected value is submitted as a tag-encoded `chip_payment_method` field (e.g. `fpx:MB2U0227`, `fpx_b2b1:PBB0234`, `razer:GrabPay`, `dnqr`, `card`).
+* Added - Card group. The Card entry in the `payment_method_whitelist` multiselect now expands at runtime to the full `{visa, mastercard, maestro}` group, matching the existing DuitNow QR group pattern. Saved values containing the legacy `visa`/`mastercard`/`maestro` multiselect keys are auto-migrated in memory to the new `card` key on the next load.
+* Added - REST endpoint type `unified`. `GET /chip/v1/banks/unified/<gateway>` returns the merchant's eligible payment methods as a flat `{ tag: label }` object, used by the unified dropdown for lazy loading.
+* Added - Blocks support class `unified` mode. Mixed whitelists (Card plus one or more dropdown methods, or two or more dropdown methods) now render the unified dropdown alongside the card form in Blocks checkout. Saved cards coexist with the dropdown.
+* Added - Shared `UnifiedPaymentMethodList` React component used by all five clone gateway bundles, exposed via `wp.element.createElement` and registered as a webpack `dependencies` injection so the shared bundle loads before each clone bundle in the browser.
+* Changed - `bypass_chip()` rewritten as a tag parser that handles `fpx:CODE`, `fpx_b2b1:CODE`, `razer:WALLET`, `dnqr`, `card`, plus the legacy single-method values.
+* Changed - Card option label clarified to "Card (Visa, Mastercard, Maestro)" in the unified dropdown for explicit disclosure of the accepted card networks.
+* Changed - Replaced the placeholder `assets/duitnow_qr.png` with a proper 50x50 DuitNow logo rendered from the existing `duitnow_only.svg`, matching the visual style of the other dropdown option icons.
+* Fixed - `is_card_only_whitelist()` and `process_payment_with_context()` correctly handle the constructor-expanded `['card']` whitelist so the card-only merchant flow (delayed capture, Blocks checkout direct POST) works after the Card group refactor.
+* Fixed - Blocks support class `js_display` decision now uses the in-memory expanded whitelist so saved `['card']` and `['fpx', 'card']` merchants correctly render `js_display='unified'` instead of an empty value.
+* Fixed - Shared `unified-payment-method-list` bundle is now enqueued via a webpack `SharedBundleDependencyPlugin` that injects the dependency into each clone's `.asset.php`, so the component renders at runtime instead of returning `null`.
+* Changed - Blocks checkout renders the unified dropdown as a native `<select>` element (no logo) for a lighter, more accessible experience.
+* Added - Offline FPX banks are now displayed but disabled (not selectable) in both classic and Blocks checkout, instead of being silently removed.
+* Added - Crypto Coin and Atome e-wallet logos in the unified dropdown.
+* Changed - Card option logo now uses the Visa/Mastercard-only asset (no CHIP badge).
+* Fixed - Cross-contamination between gateway clones on the order-pay page: each gateway's dropdown now submits a scoped field name (`chip_payment_method_<id>`) so a DuitNow QR-only clone can no longer clobber another gateway's FPX selection.
+* Fixed - Global JS collision where only the last gateway clone received the dropdown enhancement (selectWoo, logo, hidden mirror); all scoped selects are now enhanced in one pass.
+* Fixed - Card option on the order-pay "try again" page now redirects to the CHIP payment page (`?preferred=card`) so the customer fills card details at CHIP.
+* Fixed - Offline bank list race condition: the unavailable-bank lists are now computed lazily so they are correct regardless of when the gateway is queried.
+* Fixed - Removed a per-page-load curl to the CHIP health-check API (`api.chip-in.asia/health_check`) that ran on every request via `register_script()`; the bank data is now only fetched on the checkout page.
+* Fixed - Saved-card subscription payments failed with "Expected a list of items but got type dict". `array_intersect()` preserved the keys of the group-expanded whitelist, so `json_encode()` serialized the recurring whitelist as a JSON object instead of a list. The recurring whitelist is now re-indexed with `array_values()`.
+* Fixed - Card data is now posted to CHIP via jQuery `.val()` setters instead of string concatenation, removing a DOM-based XSS vector in the direct-post flow.
+* Fixed - Bank codes and `?preferred=` values are now `rawurlencode()`d before being appended to the redirect URL, preventing parameter injection.
+* Added - A "CHIP Saved Card" metabox on the subscription admin page lets a store owner switch the subscription's saved card without the customer logging in. Only existing saved tokens are offered (never a raw card number), and switching records a consent note on the subscription for audit.
+* Fixed - The `/chip/v1/banks` REST endpoint now requires a valid `wp_rest` nonce (sent as `X-WP-Nonce` by the Blocks checkout), so unauthenticated callers can no longer trigger the outbound health-check request at will.
+* Fixed - Cardholder name and masked PAN are now redacted from debug logs, so enabling debug mode does not write customer PII to the log file.
+* Changed - Payment-methods API cache TTL raised to 1 hour (from 3 minutes / 30 minutes) to reduce outbound API latency on checkout.
+* Fixed - Renewal and pre-order charges now fail fast with a clear note when no saved card matches the gateway, instead of charging with an empty token and surfacing a confusing "Invalid or inactive recurring token" error.
+
+= 2.0.6 =
+* Added - dnqr payment method support. The DuitNow QR entry in the gateway's payment_method_whitelist multiselect now resolves at runtime to whichever of {duitnow_qr, dnqr} the merchant actually has available, prioritizing dnqr. A new resolver calls /payment_methods/ (with a 30-minute transient cache keyed by brand, currency, and amount-bucket) and short-circuits when no dnqr-group member is configured. The Razer e-wallet switch's case 'duitnow-qr' and the single-method DuitNow QR branch both apply the priority. No DB migration is required.
+* Fixed - DuitNow QR redirect URLs no longer append '&razer_bank_code=duitnow-qr'. DuitNow QR is its own payment method, not a Razer bank code, so the URL is now '?preferred=dnqr' (or '?preferred=duitnow_qr' as the fallback) with no bank-code suffix.
+* Fixed - DuitNow and DuitNow-only logos now render at the same visual height as the other logos in the gateway settings preview. The duitnow*.svg files had intrinsic sizes of 103x25 and 28x25 respectively, which made them appear undersized against the 50px-tall PNGs. Both SVGs are now sized to render at 50px tall. The preview img CSS was also changed from 'max-height: 50px' to 'height: 50px; width: auto' so all logos render at exactly 50px tall with proportional width.
+
+= 2.0.5 2026-05-19 ==
+* Fixed - Improved version tagging consistency during the automated release process.
+* Changed - Updated the deployment workflow to source release notes directly from the plugin's changelog for better accuracy.
+* Removed - Redundant external scripts and dependencies previously used for automated release note generation.
+
+= 2.0.4 2026-05-19 ==
+* Added - New plugin banners, icons, and screenshots for the WordPress.org plugin page.
+* Added - Automated unit testing suite to ensure long-term stability and reliability.
+* Changed - Modernized the build and deployment process for more consistent plugin updates.
+* Changed - Updated developer documentation and contribution guidelines.
+
+= 2.0.3 2026-02-26 =
+* Fixed - Safe product price and quantity handling when building purchase products. Prevents division by zero when price or quantity is 0; falls back to total_override in process_payment, auto_charge, and process_pre_order_payments.
+
+= 2.0.2 2026-02-05 =
+* Fixed - Subscription payment method change when customer chooses new card instead of saved card. Resolved ID mismatch between order-pay path and change_payment_method parameter used by WooCommerce Subscriptions.
+* Fixed - Redirect to CHIP checkout URL blocked by wp_safe_redirect when changing subscription payment method. Added allowed_redirect_hosts filter to permit CHIP gateway domain.
+
+= 2.0.1 2026-01-07 =
+* Added - MBSB Bank to FPX bank list.
+* Added - FPX B2B1 standalone logo option.
+* Updated - FPX B2C standalone logo option.
+
+= 2.0.0 2026-01-06 =
+* Changed - Refactored codebase with improved class structure for WordPress coding standards compliance.
+* Changed - Renamed global constants WC_CHIP_ROOT_URL and WC_CHIP_FPX_ROOT_URL to CHIP_ROOT_URL and CHIP_FPX_ROOT_URL.
+* Changed - Changed hook prefixes from wc_ to chip_ with backward compatibility using _deprecated_hook().
+* Changed - CVC input now hidden (password type) in both legacy and blocks checkout.
+* Changed - Simplified client creation by removing explicit client_id management.
+* Changed - Only update order status to Failed when order is in Pending Payment status.
+* Added - Filter chip_blocks_payment_method_data for blocks payment method customization.
+* Added - REST API endpoint for lazy loading FPX banks and e-wallets (GET /chip/v1/banks/).
+* Added - Direct POST card payments support for WooCommerce Blocks checkout.
+* Added - Card form component with validation for WooCommerce Blocks.
+* Added - Expiry formatting (MM/YY) for legacy checkout card form.
+* Added - Card number formatting with spaces every 4 digits for legacy checkout.
+* Added - Save card option (remember_card) parameter for both legacy and blocks checkout.
+* Added - PostgreSQL compatibility for database locking.
+* Added - Void payment functionality for pre-authorized payments.
+* Added - Capture payment functionality for pre-authorized payments.
+* Added - Card brand logos (Visa/Mastercard) display in card number input field.
+* Added - Bank/e-wallet logos display next to selected option in dropdown.
+* Added - Purchase ID history tracking for multiple payment attempts on same order.
+* Added - Purchase ID included in log messages for better debugging.
+* Added - ABSPATH security check to all PHP files.
+* Improved - WooCommerce Blocks integration with recommended patterns.
+* Improved - canMakePayment now checks currency support and payment requirements.
+* Improved - Bank/e-wallet lists now lazy loaded via AJAX for better performance.
+* Improved - Expiry and CVC fields now have equal width styling in blocks checkout.
+* Improved - Code quality with PHPCS compliance fixes.
+* Fixed - Saved card payments in WooCommerce Blocks checkout.
+* Fixed - Direct POST redirect behavior consistency in blocks checkout.
+* Removed - Metabox AJAX handler and related features.
+* Removed - Update client information option and patch_client functionality.
+* Removed - Disable clients API option.
+* Removed - Force tokenization setting.
+* Removed - Webhook public key option and related webhook handling.
+* Removed - get_client_by_email function (now relies on automatic client creation).
+* Removed - CHIP Invoice, Receipt, and Feed buttons from order admin page.
+
+= 1.8.5 2025-12-08 =
+* Fixed - Fix issue when card set with Google Pay together with Bypass CHIP payment page option for add card.
+
+= 1.8.4 2025-12-08 =
+* Fixed - Fix issue when card set with Google Pay together with Bypass CHIP payment page option.
+
+= 1.8.3 2025-11-17 =
+* Added - Support for Google Pay
+
+= 1.8.2 2025-11-04 =
+* Fixed - Issue with add_meta_box when function is unavailable
+
+= 1.8.1 2025-09-18 =
+* Changed - Modified message when checkout failed to automatically redirect
+
+= 1.8.0 2025-07-18 =
+* Changed - Enhanced logger implementation with multiple log levels (info, error, debug)
+* Changed - Improved error handling in logger with fallback to WordPress error_log
+* Changed - Bumped WooCommerce tested version to 10.0
+
+= 1.7.0 2025-07-16 =
+* Removed - Send receipt option from admin settings
+* Changed - Hardcoded send_receipt parameter to false for all payment methods
+* Removed - Unused purchase_sr variable
+
+= 1.6.9 2025-06-28 =
+* Fixed - FPX dropdown banks not showing some banks
+
+= 1.6.8 2025-03-20 =
+* Added - Auto remove whitespace in brand id and secret key field on save
+* Added - Site health check for CHIP's API connection
+* Changed - Email fallback description and placeholder
+
+= 1.6.7 2025-02-14 =
+* Fixed - Fix issue with Requery Status for HPOS configuration.
+
+= 1.6.6 2025-01-03 =
+* Fixed - Fix payment fail when cart item exceed 100
+
+= 1.6.5 2024-10-02 =
+* Fixed - Fix Razer Checkout Block
+
+= 1.6.4 2024-07-17 =
+* Fixed - Fix issue image class name for classic checkout
+
+= 1.6.3 2024-06-29 =
+* Fixed - Issue with metabox when no collection available
+
+= 1.6.2 2024-06-20 =
+* Changed - Uncheck Purchase Send Receipt by Default
+
+= 1.6.1 2024-05-30 =
+* Added - Add DuitNow payment option in e-wallet
+* Added - Add payment method logo in checkout blocks
+* Fixed - Fix issue with pricing for E-Wallet
+
+= 1.6.0 2024-04-22 =
+* Added - Add payment method for Duitnow QR.
+
+= 1.5.3 2024-03-15 =
+* Fixed   - Fixed error for dedicated Atome payment method.
+
+= 1.5.2 2024-03-01 =
+* Added   - Metabox option for reporting on total account turnover
+* Changed - Option for description are now using textarea instead of text
+
+= 1.5.1 2024-02-26 =
+* Fixed - Issue with additional charges being double charged when subscription renewal fails
+
+= 1.5.0 2024-01-30 =
+* Added - Dedicated Atome payment method
+* Added - WooCommerce Preorder support
+* Added - More clarity when payment method whitelist is unavailable
+* Fixed - Issue with additional charges being double charged
+* Fixed - Function wc_get_log_file_path is deprecated
+
+= 1.4.9 2024-01-18 =
+* Changed - Payment method whitelist option now always show all payment method.
+
+= 1.4.8 2023-12-20 =
+* Added - Hook for _before_handle_callback_order and _after_handle_callback_order
+
+= 1.4.7 2023-12-18 =
+* Added - Support for E-Wallet bypass payment page
+* Added - Validation for card holder name from unsupported character
+* Added - Email address fallback when email address is not available
+
+= 1.4.6 2023-12-11 =
+* Fixed   - Issue with WooCommerce Block checkout where bypass payment page not work
+* Changed - Change API endpoint to api.chip-in.asia/health_check/fpx_b2c
+
+= 1.4.5 2023-11-08 =
+* Added - Introduce alternative payment journey for unpaid order
+
+= 1.4.4 2023-10-26 =
+* Added - Maestro logo option for international payment method support
+* Fixed - Syntax error on preauthorize action when X Signature is failed
+
+= 1.4.3 2023-09-26 =
+* Fixed - Issue with cardholder name input in mobile view
+
+= 1.4.2 2023-09-14 =
+* Added   - Add platform value for add_payment_method and process_payment_method_change
+* Added   - Add order note for mentioning token id for easier troubleshooting
+* Added   - Automatically delete invalid token
+* Added   - Ensure empty cart will be prefilled with generic product name
+* Added   - Add logo without CHIP logo.
+* Changed - Change Choose an option to Choose your bank based on community feedback
+* Changed - Order note will be stored first before woocommerce order status change
+
+= 1.4.1 2023-09-01 =
+* Fixed - Performance improvement for FPX bypass page status check.
+* Fixed - Ensure bypass chip payment page works without maestro option.
+* Fixed - Fix checkout issue with CheckoutWC
+
+= 1.4.0 2023-08-18 =
+* Added - Support for bypass payment page for WooCommerce Blocks checkout for FPX B2C and FPX B2B1
+* Added - Support for bypass payment page for legacy WooCommerce checkout for cards.
+* Added - Default payment method whitelist for easier configuration.
+* Added - Item charge for adding additional fee.
+* Added - New icon.
+* Added - Now bypass payment page for FPX will be based on banks availability.
+
+= 1.3.9 2023-07-21 =
+* Added   - Support for RM0 initial checkout.
+* Changed - Set redirect parameter to direct_post_url for Visa/Mastercard payment method
+* Fixed   - Error after payment for admin after making payment
+* Fixed   - Missing client if the order created through dashboard
+
+= 1.3.8 2023-05-27 =
+* Added - State information for address in billing and shipping
+* Fixed - Zip code billing should taken from billing
+
+= 1.3.7 2023-05-24 =
+* Added - Quantity in CHIP Purchase invoice.
+
+= 1.3.6 2023-05-23 =
+* Changed - Put meaningful description in option page to reduce confusion
+* Added   - More hooks for better data manipulation
+* Fixed   - Issue when product price is less than zero
+
+= 1.3.5 2023-05-08 =
+* Changed - Put meaningful description to reduce confusion
+* Changed - Automatic force tokenization for card when subscription product exists
+* Removed - Removed save to account checkbox due to confusion
+* Fixed   - Prevent Fatal Error on WooCommerce Scheduler in the event of invalid secret key
+
+= 1.3.4 2023-04-13 =
+* Added   - Add purchase id to order note
+* Added   - Add action hooks for payment creation
+* Changed - Hide save payment method checkbox when force tokenization enabled
+* Changed - Hide add new payment method if no token
+* Fixed   - Issue with FPX payment when there is unsupported apostrophe
+
+= 1.3.3 2023-04-07 =
+* Fixed - Issue with Add/Change Payment method
+
+= 1.3.2 2023-03-29 =
+* Changed - Requery will stop attempt if status is expired
+* Changed - Ensure lock are released for requery
+* Added   - Declaration for WooCommerce HPOS compatibility
+* Added   - Bypass CHIP Payment Page for E-Wallet
+* Added   - Option to not using CHIP clients API for logged in user
+* Fixed   - Warning when non logged in user choose to save card
+* Fixed   - Warning when secret key changed and unable to requery the purchases
+
+= 1.3.1 2023-03-14 =
+* Fixed - Unable to redirect to FPX B2B1 when using Bypass CHIP Payment Page
+* Fixed - Unable to redirect to CHIP Payment page when switching from test to production key
+
+= 1.3.0 2023-03-13 =
+* Added   - Add support for WooCommerce Subscription
+* Added   - Hook token deletion with CHIP
+* Added   - Chip_Woocommerce_Gateway can be extended for cloning
+* Added   - Now CHIP payment have 4 payment method by default
+* Added   - Support for whitelisting payment method
+* Added   - Purchase due strict is now configurable
+* Added   - Due strict timing can be configured independently
+* Added   - Registered users are now linked with CHIP clients
+* Added   - Option to update client information on checkout
+* Added   - Option to disable success_callback or success_redirect for troubleshooting
+* Added   - Option to force https:// to prevent redirection on success_callback
+* Added   - Option to disable tokenization
+* Added   - Option to disable payment method cloning via PHP constant
+* Added   - Automatic requery payment status
+* Added   - Bulk requery payment status
+* Added   - Button link to invoice, receipt and feed
+* Added   - Pass customer order notes to CHIP API
+* Added   - Experimental support for WooCommerce Blocks
+* Added   - Bypass CHIP payment page feature for FPX
+* Changed - Timezone is now configurable within plugin option
+* Removed - Enable Payment method selection is now removed
+* Fixed   - Customer still shown a failed payment page when there is failed attempt
+
+= 1.2.7 2023-03-05 =
+* Fixed - Issue with due timestamp when woocommerce hold stock option is empty
+* Fixed - Warning with e-wallet
+
+= 1.2.6 2023-01-26 =
+* Added - Add FPX extra information on failure
+* Fixed - Enable payment method selection requires total amount
+
+= 1.2.5 2023-01-01 =
+* Fixed - Amount deducted twice when using coupon
+
+= 1.2.4 2022-12-28 =
+* Added - Add error logging on create purchase error
+
+= 1.2.3 2022-12-15 =
+* Added   - Add maestro as card group
+* Added   - Constant CHIP_WOOCOMMERCE_OLD_URL_SCHEME for switch to old URL scheme
+* Changed - Redirect URL using new URL scheme
+
+= 1.2.2 2022-11-25 =
+* Tweak - Enhance locking to lock per order id
+* Fix   - Issue with error when payment with visa and mastercard
+
+= 1.2.1 2022-11-12 =
+* Add - Support for success_callback verification using public key
+
+= 1.2.0 2022-11-8 =
+* Add    - Add filters wc_chip_supports to allow refund to be disabled
+* Add    - Timezone support for due strict
+* Tweak  - Revamp how preferred payment option being presented
+* Tweak  - Hide custom field for chip_transaction_id as it is not meant to be edited
+* Update - New logo
+
+= 1.1.4 2022-11-7 =
+* Add    - Check payment id to avoid spoofing
+* Add    - Add hooks to allow checkout page to be customized
+* Add    - CHIP Icon on checkout page
+* Tweak  - Prevent unsupported currencies to be paid
+* Update - Standardize terminology for secret key
+* Update - Change FPX B2C to FPX
+
+= 1.1.3 2022-10-12 =
+* New   - Intial Repack Release.
+* Tweak - Added due strict to enforce payment timeout based on Hold Stock (Minutes)
+* Tweak - Removed country selection on checkout page.
+
+= 1.1.2 2022-10-11 =
+* Initial release

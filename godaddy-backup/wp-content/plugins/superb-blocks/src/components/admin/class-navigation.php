@@ -1,0 +1,121 @@
+<?php
+
+namespace SuperbAddons\Components\Admin;
+
+use SuperbAddons\Admin\Controllers\DashboardController;
+use SuperbAddons\Admin\Controllers\RewriteCheckController;
+use SuperbAddons\Admin\Utils\AdminLinkSource;
+use SuperbAddons\Admin\Utils\AdminLinkUtil;
+use SuperbAddons\Data\Controllers\KeyController;
+
+defined('ABSPATH') || exit();
+
+class Navigation
+{
+    private $pages;
+    private $active_page;
+    private $issue_detected = false;
+    private $has_premium = false;
+    private $hide_navigation_items = false;
+    private $theme_designer = false;
+
+    public function __construct($hide_navigation_items = false, $theme_designer = false)
+    {
+        $HasRegisteredKey = KeyController::HasRegisteredKey();
+        if ($HasRegisteredKey) {
+            $this->has_premium = KeyController::HasValidPremiumKey();
+            $KeyStatus = KeyController::GetKeyStatus();
+            if (!$KeyStatus['active'] || $KeyStatus['expired'] || !$KeyStatus['verified'] || $KeyStatus['exceeded']) {
+                $this->issue_detected = true;
+            }
+        }
+
+        if (!$this->issue_detected && RewriteCheckController::HasDetectedIssue()) {
+            $this->issue_detected = true;
+        }
+
+        $this->theme_designer = $theme_designer;
+
+        if ($hide_navigation_items) {
+            $this->hide_navigation_items = true;
+            $this->pages = array();
+            $this->Render();
+            return;
+        }
+
+        // No need to verify nonce here, as we are simply reading the value to determine the current page
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $this->active_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : DashboardController::DASHBOARD;
+        $pages = array_merge(array(DashboardController::MENU_SLUG => __("Dashboard", "superb-blocks")), apply_filters('superbaddons/admin/navigation/pages', array()));
+        $this->pages = array_merge($pages, array(
+            DashboardController::PAGE_WIZARD => __("Theme Designer", "superb-blocks"),
+            DashboardController::FORMS => __("Forms", "superb-blocks"),
+            DashboardController::ADDITIONAL_CSS => __("Custom CSS", "superb-blocks"),
+            DashboardController::SETTINGS => __("Settings", "superb-blocks"),
+            DashboardController::SUPPORT => __("Get Help", "superb-blocks"),
+        ));
+        $this->Render();
+    }
+
+    private function Render()
+    {
+?>
+        <div class="superbaddons-admindashboard-navigation <?php echo $this->hide_navigation_items ? 'superbaddons-admindashboard-navigation-items-hidden' : ''; ?>">
+            <div class="superbaddons-admindashboard-navigation-toplevel">
+                <a href="<?php echo esc_url(admin_url('admin.php?page=' . DashboardController::MENU_SLUG)); ?>" class="superbaddons-admindashboard-navigation-logo-wrapper">
+                    <img src="<?php echo esc_url(SUPERBADDONS_ASSETS_PATH . '/img/icon-superb.svg'); ?>" />
+                    <span class="superbaddons-element-text-md superbaddons-element-text-800 superbaddons-element-text-dark">Superb Addons</span>
+                </a>
+                <?php if ($this->theme_designer) : ?>
+                    <div class="sba-wizard-topbar-info-wrapper">
+                        <div class="sba-wizard-topbar-info">
+                            <span class="sba-wizard-topbar-flow"><?php echo esc_html__('Theme Designer', 'superb-blocks'); ?></span>
+                            <span class="sba-wizard-topbar-step"></span>
+                        </div>
+                        <span class="tooltip-right"
+                            tabindex="0"
+                            data-tooltip="Colors will match your theme style after the setup is complete.">
+
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="25"
+                                height="25"
+                                fill="currentColor"
+                                viewBox="0 0 256 256">
+                                <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path>
+                            </svg>
+                        </span>
+                    </div>
+                <?php endif; ?>
+                <div class="superbaddons-admindashboard-navigation-shortcuts">
+                    <?php if (!$this->has_premium) : ?>
+                        <a class="superbaddons-admindashboard-navigation-shortcuts-item" target="_blank" href="<?php echo esc_url(AdminLinkUtil::GetLink(AdminLinkSource::NAVIGATION)); ?>" title="<?php echo esc_attr__("Get Premium", "superb-blocks"); ?>"><img src="<?php echo esc_url(SUPERBADDONS_ASSETS_PATH . '/img/color-crown.svg'); ?>" alt="<?php echo esc_attr__("Get Premium", "superb-blocks"); ?>" /></a>
+                    <?php endif; ?>
+                    <a class="superbaddons-admindashboard-navigation-shortcuts-item" target="_blank" href="<?php echo esc_url(AdminLinkUtil::GetLink(AdminLinkSource::DEFAULT, array("url" => "https://superbthemes.com/contact/"))); ?>" title="<?php echo esc_attr__("Contact Support", "superb-blocks"); ?>"><img src="<?php echo esc_url(SUPERBADDONS_ASSETS_PATH . '/img/help.svg'); ?>" alt="<?php echo esc_attr__("Contact Support", "superb-blocks"); ?>" /></a>
+                    <a class="superbaddons-admindashboard-navigation-shortcuts-item" target="_blank" href="<?php echo esc_url(AdminLinkUtil::GetLink(AdminLinkSource::DEFAULT, array("url" => "https://superbthemes.com/documentation/"))); ?>" title="<?php echo esc_attr__("View Documentation", "superb-blocks"); ?>"><img src="<?php echo esc_url(SUPERBADDONS_ASSETS_PATH . '/img/file.svg'); ?>" alt="<?php echo esc_attr__("View Documentation", "superb-blocks"); ?>" /></a>
+                    <span class="superbaddons-admindashboard-navigation-shortcuts-item superbaddons-admindashboard-navigation-shortcuts-version">
+                        <?php echo esc_html(SUPERBADDONS_VERSION); ?>
+                        <?php if ($this->has_premium) : ?>
+                            <img class="superbaddons-element-ml1" src="<?php echo esc_url(SUPERBADDONS_ASSETS_PATH . '/img/purple-crown.svg'); ?>" alt="<?php echo esc_attr__("Premium License", "superb-blocks"); ?>" />
+                        <?php endif; ?>
+                    </span>
+                    <?php if (!$this->has_premium) : ?>
+                        <a class="superbaddons-element-button-pro superbaddons-admindashboard-navigation-shortcuts-unlock" target="_blank" href="<?php echo esc_url(AdminLinkUtil::GetLink(AdminLinkSource::NAVIGATION_CTA)); ?>"><?php echo esc_html__("Unlock All Features", "superb-blocks"); ?></a>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php if (!$this->hide_navigation_items) : ?>
+                <div class="superbaddons-admindashboard-navigation-bottomlevel">
+                    <?php foreach ($this->pages as $pagekey => $pagetitle) : ?>
+                        <a href="<?php echo esc_url(admin_url('admin.php?page=' . $pagekey)); ?>" class="superbaddons-admindashboard-navigation-bottomlevel-item <?php echo $pagekey == $this->active_page ? 'superbaddons-admindashboard-active' : ''; ?>">
+                            <?php echo esc_html($pagetitle); ?>
+                            <?php if ($pagekey == DashboardController::SUPPORT && $this->issue_detected) : ?>
+                                <img class="superbaddons-admindashboard-navigation-bottomlevel-item-issue-img" src="<?php echo esc_url(SUPERBADDONS_ASSETS_PATH . '/img/color-warning-octagon.svg'); ?>" alt="<?php echo esc_attr__("Issue Detected", "superb-blocks"); ?>" />
+                            <?php endif; ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+<?php
+    }
+}

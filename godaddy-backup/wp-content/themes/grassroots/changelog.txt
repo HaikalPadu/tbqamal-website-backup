@@ -1,0 +1,200 @@
+Grassroots changelog:
+
+April 2, 2025 - version 1.7
+* ADD: One-click automatic update. Starting with this version, you can now update this theme directly from your WordPress dashboard. To do so, follow the instructions in WordPress > Appearance > Theme License. - includes/theme-updater.php
+* UPDATE: Our own Organized Themes Campaign Extension For WooCommerce plugin.
+* UPDATE: Shatner - Name your Own Price Integration for WooCommerce plugin with our own updates.
+* UPDATE: "Twitter" to "X".
+* UPDATE: Widgets are now compatible with the Block-based Widgets Editor and can be previewed in Appearance > Widgets (and Customize > Widgets).
+* UPDATE: WooCommerce templates.
+* UPDATE: PHP 8.3 compatibility.
+* FIX: PHP fatal error on fresh install. - includes/options.php
+* FIX: PHP notices on Staff post type. - includes/post-types/staff.php
+* FIX: PHP notices on Sponsor post type. - includes/post-types/sponsors.php
+* FIX: PHP error on Import/Export page. - inc/options-backup.php
+* FIX: PHP error meta options. - inc/options-framework.php & inc/options-interface.php
+* FIX: PHP notices and errors on Contact widget. - includes/widget-contact.php
+* FIX: PHP notices and errors on Featured Posts widget. - includes/widget-posts.php
+* FIX: PHP notices and errors on Sponsor widget. - includes/widget-sponsors.php
+* FIX: PHP notices on loading fonts. - includes/fonts.php
+* FIX: PHP notices header. - header.php
+* FIX: PHP deprecated issues on meta CMB fields. - includes/custom-meta-boxes/helpers/cmb_Meta_Box_field.php
+* FIX: PHP deprecated issues on saving CMB meta fields. - includes/custom-meta-boxes/helpers/cmb_Meta_Box_Sanitize.php
+* FIX: PHP deprecated issues on defining CMB meta fields. - includes/custom-meta-boxes/helpers/cmb_Meta_Box_Sanitize.php
+
+March 9, 2022 - version 1.6
+* UPDATE: WordPress 5.9 compatibility.
+* FIX: Donation amount issue on cart page - updated the plugin shatner-name-your-own-price-for-woocommerce.zip and added/prepackaged it into the theme in lib/plugins/ - includes/class-tgm-plugin-activation.php
+* FIX: Widgets not displaying - functions.php
+* FIX: Contact widget not showing details - includes/widget-contact.php
+
+August 19, 2021 - version 1.5.10
+- Fixed fonts API URL - includes/fonts.php
+- Undefined index - includes/theme-customizer.php
+- Undefined indexes - includes/fonts.php
+- Undefined variable - layouts/hero-options.php
+- Load Google Fonts only if needed.
+
+March 10, 2021 - version 1.5.9
+* UPDATE: WordPress 5.7 and PHP 8 compatibility.
+* FIX: HomeBox widget image selector now opens the Media Library correctly.
+* FIX: Sponsor undefined `$post` variable.
+* FIX: Staff undefined `$post` variable.
+* FIX: undefined `$font_color` in `inc/options-interface.php`.
+* FIX: undefined `$font_style` in `inc/options-interface.php`.
+* FIX: deprecated `screen_icon()` and `get_screen_icon()` usages.
+* FIX: Contact Widget - multiple undefined indexes.
+
+October 5, 2020 - version 1.5.8
+- Compatibility with WordPress 5.5
+- Fixed error which prevented the choose image dialog box from opening in the Widget Home Box.
+- jQuery error fixes.
+- Theme Options fixes.
+* js/welcome-admin.js
+* includes/custom-js.php
+* includes/widget-home-box.php
+* includes/widget-featured-page.php
+
+September 24, 2020 - version 1.5.7
+- Fixed jQuery error which prevented the choose image dialog box from opening in the Widget Home Box.
+* js/welcome-admin.js
+
+June 19, 2020 - version 1.5.6
+- Footer background color fix when using compact/boxed footer layout.
+* includes/custom-css.php
+- Added plugin installer after activating the theme, displaying the recommended plugins to install.
+* includes/class-tgm-plugin-activation.php
+* includes/theme-plugins.php
+
+June 18, 2020 - version 1.5.5
+- Fix for WooCommerce product tabs (such as Additional information) not displaying when clicked.
+* functions.php
+- Fix for sub-submenu not displaying.
+* header.php
+- Fixed a small bug that caused errors in error_log.
+* includes/custom-meta-boxes/init.php
+- Fixed bug affecting the Sponsor Widget layout.
+* includes/widget-sponsors.php
+- Changed default footer colors. Added transition animation for links. Added animation for when hovering over sponsor images. Increased post margin to separate individual posts.
+* style.css
+- Moved front-end product SKU and category texts to their own row.
+* styles-woocommerce.css
+
+July 9, 2019 - version 1.5.4
+- Fixed font weight (bold) not showing in screen sizes under 1024px.
+* style.css
+
+February 18, 2019 - version 1.5.3
+- Fixed alignment for dropdown menu.
+* style.css
+- Sponsor widget: animation speed has been removed as it wasn't working.
+* includes/widget-sponsors.php
+
+February 15, 2019 - version 1.5.2
+- Fixed dropdown menu bugs.
+- Fixed header overlapping.
+* style.css
+* functions.php
+
+September 19, 2018 - version 1.5.1
+- Pages that displayed posts in a category had too much space between each post.
+* archive.php
+
+July 19, 2018 - version 1.5
+- Reviews tab for products is now accessible. It was previously reloading the page upon clicking it.
+- WooCommerce templates have been updated.
+- Added a proper footer. You can now choose between 1 and 4 columns, and can choose between a full-width footer and a compact footer layout.
+- Search button in sidebar is now aligned and has a hover effect.
+* includes/options.php
+* includes/theme-customizer.php
+* includes/custom-css.php
+* includes/custom-js.php
+* style.css
+
+06.07.2016 - version 1.2.4
+ * index.php -- made change to first video function
+ * /includes/images.php -- made change to first video function
+ * /includes/custom-js.php -- updated smooth scrolling for newer jQuery versions
+
+02.06.2016 - version 1.2.3
+ * /includes/theme-customizer.php -- moved navigation items to new section
+ * /includes/widget-video.php -- updated widget to add oEmbed option
+ * /includes/widgets-*.php -- updated php constructor to new version
+ * /includes/custom-css.php -- took out reference to visited color in navigation 
+ 
+12.19.2015 - version 1.2.2
+ 
+ * /layouts/hero-options.php -- removed navigation visited states
+ * style.css -- removed navigation visited states
+ * /includes/custom-css.php -- changed current page drop down hover cover to be more specific with visited pages.
+
+08.27.2015 - version 1.2.1
+ * style.css -- changed staff list styling from template to .staff-list
+ * header.php -- changed logo area so alt logo for posts page loads now.
+ * /layouts/hero-options.php -- changed position of video loop option
+
+07.06.2015 - version 1.2.0
+ * style.css -- altered home box layout for screens 767px and smaller
+  -- tweaked small and normal sized hero height so it has a minimum height, but can grow beyond that on large, wide screens
+  -- tweaked hero layout on very short screens like a phone in landscape orientation
+ * header.php -- changed loading of hero for blog page also
+ * /layouts/hero-options.php -- added hero option for blog page
+
+05.07.2015 - version 1.1.1
+ * style.css -- changed n:th child on staff members in archive view
+ * /layouts/staff-details.php -- added mailto: to staff links
+
+04.27.2015 - version 1.1.0
+ * styles.css -- added styling for home page featured post widget
+    -- added section for wallpaper.js script
+ * /includes/custom-css.php -- added current item hover to navigation item hover color.
+    -- added current menu item selector for sub-menu current page color (same as hover).
+    -- added output of new color options
+    -- added footer content to footer background color
+    -- removed unnecessary selectors from button styles
+ * /includes/theme-customizer.php -- removed unnecessary section from home page panel
+ * /includes/woocommerce.php -- added helper function file for WooCommerce
+ * functions.php -- loading of new woocommerce.php file
+ * styles-woocommerce.css -- moved WooCommerce styles into theme
+ * /images/icons/ -- added folder of WooCommerce icons
+ * /includes/options.php -- added options for alt buttons, price and sale notification
+ * /includes/theme-customizer.php -- loaded new options into customizer
+ * /woocommerce/loop/pagination.php -- swapped WooCommerce pagination for theme's
+ * /js/wallpaper.js -- added background video script
+ * /js/covervids.js -- removed old background video script
+ * /includes/scripts.php -- removed covervids and replaced it with wallpaper
+ * /includes/custom-meta-boxes/grassroots.php -- added field for YouTube URL and removed width and height fields
+
+04.15.2015 - version 1.0.4
+ * header.php -- removed reference to Chrome frame since the project is no longer in use
+ * /includes/scripts.php -- fixed stylesheet/template reference in registering slick.js
+ * style.css -- removed bottom margin from child comments in blog to prevent unexpected gaps
+     -- added styling for featured post widget on home page to mirror home box layout
+     -- changed 2n to 3n + 2 for margins in staff section
+ * /includes/options.php -- added option for navigation menu button color
+ * /includes/custom-css.php -- output for navigation button color
+     -- fixed drop-down color when child of current page item
+ * /includes/theme-customizer.php -- add navigation button options to customizer
+ * single-staff.php -- changed staff image to correct size
+ * taxonomy-staff-group.php -- moved staff-list div to begin below taxonomy description
+
+03.01.2015 - version 1.0.3
+ * style.css -- adjusted drop-down menu width and padding
+ * /includes/custom-css.php -- fixed drop-down distance output
+ * /includes/widget-contact.php -- fixed display of phone number in widget settings.
+
+01.16.2015 - version 1.0.2
+ * /includes/post-types/staff.php -- fixed custom staff and staff-group slugs
+ * /includes/custom-meta-boxes/grassroots.php -- added option for looping/not looping video
+ * /layouts/hero-options.php -- looping video option
+
+11.24.2014 - version 1.0.1
+ * style.css -- fixed home box on smaller screens
+     -- fixed small height hero option
+ * /layouts/hero-options.php -- fixed call to hero_image_mobile in line 32
+ * /includes/options.php -- added option to change sponsor slug and sponsor group slug
+ * /includes/post-types/sponsors.php -- added options to change slugs for sponsors and sponsor groups
+ * taxonomy-sponsor-group.php -- added file
+
+09.16.2014 - version 1.0.0
+ * First release!
